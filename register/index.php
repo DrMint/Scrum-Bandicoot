@@ -29,7 +29,7 @@
         $user->setHash(generateHash($password));
         $user->write();
         $_SESSION['loginUsername'] = $username;
-        header('Location: /');
+        header('Location: /templates');
       } else {
         unset($_SESSION['loginUsername']);
         echo '<style>body{animation: bw 1s;animation-fill-mode: forwards;}#container{animation: shake 0.2s;animation-iteration-count: 2;}</style>';
