@@ -26,7 +26,7 @@
 
       if (verifyKey($username, $password)) {
         $_SESSION['loginUsername'] = $username;
-        header('Location: /');
+        header('Location: /templates/navbar.php');
       } else {
         unset($_SESSION['loginUsername']);
         $formMessage = "The account name or password that you have entered is incorrect.";
