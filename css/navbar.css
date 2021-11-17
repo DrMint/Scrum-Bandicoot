@@ -1,0 +1,14 @@
+#navbar {
+  background-color: var(--color-main-dark);
+  display: grid;
+  grid-auto-flow: column;
+  color: white;
+  padding: 1rem 2rem;
+}
+
+#navbar > #logout {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-column-gap: 2rem;
+  place-items: center end;
+}

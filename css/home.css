@@ -1,0 +1,14 @@
+#projects > #projectsHeader {
+  display: grid;
+  grid-template-columns: auto auto 1fr;
+  place-items: center;
+  grid-gap: 1rem;
+}
+
+#joinProject {
+  place-self: center end;
+}
+
+.container {
+  padding: 2rem;
+}

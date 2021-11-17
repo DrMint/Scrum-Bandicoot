@@ -20,6 +20,10 @@ body {
   padding: 0;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 .button {
   background-color: var(--color-main-light);
   padding: 0.3em 1.1em;
