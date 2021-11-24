@@ -5,14 +5,8 @@
     error_reporting(E_ALL);
 
     require_once($_SERVER["DOCUMENT_ROOT"] . "/tools/users.php");
-    
-    function assertTrue($assertion) {
-        if ($assertion) {
-            return 'pass';
-        } else {
-            return 'failed';
-        }
-    }
+    require_once($_SERVER["DOCUMENT_ROOT"] . "/tools/ut.php");
+
 
     function createUser() {
         $username = 'ut-test';
@@ -39,7 +33,7 @@
     }
 
 
-    function execTests() {
+    function execTestsUsers() {
         echo 'createUser: ' . createUser() . '<br>';
         echo 'retrieveExistingUser: ' . retrieveExistingUser() . '<br>';
     }

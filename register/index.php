@@ -46,11 +46,12 @@
        <input type="password" name="password" placeholder="Password" autocomplete="current-password" required>
        <button type="submit" name="submitButton" value="Submit">Create account</button>
      </form>
+
+ </html>
+
      <?php if (isset($formMessage)) "<p id='answer'>$formMessage</p>" ?>
      <p>Already have an account?<br>
      <a href="/login">Sign in</a></p>
    </div>
 
   </body>
-
- </html>
