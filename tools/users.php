@@ -1,6 +1,6 @@
 <?php
 
-  $rootFolder = $_SERVER["DOCUMENT_ROOT"] . '/users/';
+  $rootFolder = $_SERVER["DOCUMENT_ROOT"] . '/data/users/';
 
   class User {
     public $slug;

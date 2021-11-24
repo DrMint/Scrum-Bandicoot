@@ -41,7 +41,6 @@
 
    <div id="container">
      <form method="POST" action="/register" id="myForm">
-       <img src="/img/favicon.png" alt="">
        <h1>Scrum Bandicoot</h1>
        <input type="text" name="username" placeholder="Username" value="<?php if (isset($_POST['username'])) echo $_POST['username'] ?>" autocomplete="username" required>
        <input type="password" name="password" placeholder="Password" autocomplete="current-password" required>

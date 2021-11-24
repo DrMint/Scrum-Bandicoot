@@ -10,8 +10,34 @@
 
     <?php require_once($_SERVER["DOCUMENT_ROOT"] . "/templates/navbar.php") ?>
 
+    <?php
+      if (isset($_POST['submitButton'])) {
+
+        $name = filter_var($_POST["name"], FILTER_SANITIZE_STRING);
+        $slug = strtolower($name);
+        $slug = preg_replace('/[^A-Za-z0-9-]+/', '-', $slug);
+        
+        require_once($_SERVER["DOCUMENT_ROOT"] . "/tools/project.php");
+
+        if (!project\exist($slug)) {
+          $project = new project\Project($slug);
+          $project->setName($name);
+          $project->write();
+          header('Location: /');
+        } else {
+
+        }
+
+
+      }
+     ?>
+
     <div class="container">
-        <h2>Create</h2>
+      <form method="POST" action="/projects/create" id="myForm">
+        <h2>Create a new project</h2>
+        <input type="text" name="name" placeholder="Project's name">
+        <button type="submit" name="submitButton" value="Submit">Create project</button>
+      </form>
     </div>
 
   </body>
