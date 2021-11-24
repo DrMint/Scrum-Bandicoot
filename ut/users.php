@@ -38,7 +38,10 @@
         return assertTrue($user->hash === $hash);
     }
 
-    echo 'createUser: ' . createUser() . '<br>';
-    echo 'retrieveExistingUser: ' . retrieveExistingUser() . '<br>';
+
+    function execTests() {
+        echo 'createUser: ' . createUser() . '<br>';
+        echo 'retrieveExistingUser: ' . retrieveExistingUser() . '<br>';
+    }
 
  ?>
