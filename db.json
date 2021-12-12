@@ -1,0 +1,93 @@
+{
+  "projects": [
+    {
+      "slug": "my-project",
+      "members": [
+        "demo"
+      ],
+      "backlogProduct": [
+        {
+          "title": "My first task",
+          "description": "This is a task, and it's mine!",
+          "assignees": []
+        },
+        {
+          "title": "A second task",
+          "description": "This is another task, not mine, yet...",
+          "assignees": []
+        }
+      ],
+      "sprints": [
+        {
+          "beginning": 1639228153,
+          "ending": 1640437753,
+          "columns": [
+            {
+              "title": "Backlog Sprint",
+              "locked": true,
+              "maxItem": -1,
+              "tasks": [
+                {
+                  "title": "Define and write the testing chart",
+                  "description": "",
+                  "assignees": [
+                    "demo"
+                  ]
+                },
+                {
+                  "title": "Pet Roach",
+                  "description": "Because, why not?!",
+                  "assignees": [
+                    "gerald"
+                  ]
+                }
+              ]
+            },
+            {
+              "title": "To do",
+              "maxItem": -1,
+              "locked": false,
+              "tasks": [
+                {
+                  "title": "Kill people with deadly neurotoxins",
+                  "description": "",
+                  "assignees": [
+                    "glados"
+                  ]
+                }
+              ]
+            },
+            {
+              "title": "Doing",
+              "maxItem": -1,
+              "locked": false,
+              "tasks": []
+            },
+            {
+              "title": "Review",
+              "locked": false,
+              "maxItem": 4,
+              "tasks": []
+            },
+            {
+              "title": "Done",
+              "locked": true,
+              "maxItem": -1,
+              "tasks": []
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "users": [
+    {
+      "slug": "demo",
+      "hash": "$2y$10$N7EHRwe73bddyvPPYi9Snu6kGdftdRd0X2r4f2xnntYM3hFfwSNKm"
+    },
+    {
+      "slug": "gerald",
+      "hash": "$2y$10$N7EHRwe73bddyvPPYi9Snu6kGdftdRd0X2r4f2xnntYM3hFfwSNKm"
+    }
+  ]
+}
