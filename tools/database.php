@@ -21,19 +21,20 @@
 
     ### USER ###
 
-    function getUsers() {
+    function &getUsers() {
       return $this->data['users'];
     }
 
-    function getUser($slug) {
-      foreach ($this->getUsers() as $user) {
+    function &getUser($slug) {
+      $users = &$this->getUsers();
+      foreach ($users as $user) {
         if ($user['slug'] === $slug) {
           return $user;
         }
       }
     }
 
-    function getCurrentUser() {
+    function &getCurrentUser() {
       return $this->getUser($_SESSION['loginUsername']);
     }
 
@@ -80,10 +81,49 @@
     function projectAddUser($projectSlug, $userSlug) {
       $project = &$this->getProject($projectSlug);
       array_push($project['members'], $userSlug);
-      var_dump($project);
-      echo "<br>";
-      var_dump($this->getProject($projectSlug));
       $this->save();
+    }
+
+    ### SPRINT ###
+
+    function &getSprints($projectSlug) {
+      $project = &$this->getProject($projectSlug);
+      return $project['sprints'];
+    }
+
+    function &getSprint($projectSlug, $sprintIndex) {
+      $project = &$this->getSprints($projectSlug)[$sprintIndex];
+      return $project;
+    }
+
+    ### BOARD ###
+
+    function &getColumns($projectSlug, $sprintIndex) {
+      $sprint = &$this->getSprint($projectSlug, $sprintIndex);
+      return $sprint['columns'];   
+    }
+
+    function &getColumn($projectSlug, $sprintIndex, $columnIndex) {
+      $columns = &$this->getColumns($projectSlug, $sprintIndex);
+      return $columns[$columnIndex];
+    }
+
+    ### TASKS ###
+
+    function &getTasks($projectSlug, $sprintIndex, $columnIndex) {
+      $column = &$this->getColumn($projectSlug, $sprintIndex, $columnIndex);
+      return $column['tasks'];
+    }
+
+    function &getTask($projectSlug, $sprintIndex, $columnIndex, $taskIndex) {
+      $tasks = &$this->getTasks($projectSlug, $sprintIndex, $columnIndex);
+      return $tasks[$taskIndex];
+    }
+
+    function createTask($projectSlug, $sprintIndex, $columnIndex, $title) {
+      $tasks = &$this->getTasks($projectSlug, $sprintIndex, $columnIndex);
+      $newTask = ["title" => $title, "description" => "", "assignees" => []];
+      array_push($tasks, $newTask);
     }
 
   }
