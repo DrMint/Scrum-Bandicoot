@@ -20,7 +20,7 @@
         if (!$DB->projectExists($slug)) {
           $DB->createProject($slug);
           $DB->projectAddUser($slug, $DB->getCurrentUser()['slug']);
-          header('Location: /');
+          header('Location: /projects/?name=' . $slug);
         } else {
           echo "There is already a project with this name. Please choose another name.";
         }

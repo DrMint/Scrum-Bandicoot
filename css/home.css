@@ -25,16 +25,24 @@
   place-content: center;
   place-items: center;
   border-radius: .5rem;
+}
+
+#projects > #projectsList > a.project {
   box-shadow: 0 0.2rem 0 var(--color-main-dark);
   transition: cubic-bezier(.17,.84,.44,1) .3s;
   transition-property: box-shadow, transform;
 }
 
-#projects > #projectsList > .project:hover {
+#projects > #projectsList > a.project:hover {
   box-shadow: 0 0.7rem 0 var(--color-main-dark);
   transform: translateY(-0.5rem);
   transition: cubic-bezier(.43,-0.01,.5,1.97) .1s;
 }
+
+#projects > #projectsList > .project > .button {
+  margin-bottom: 1em;
+}
+
 
 #projects > #projectsList > .project > img {
   width: 100%;

@@ -11,11 +11,9 @@
     <?php require_once($_SERVER["DOCUMENT_ROOT"] . "/templates/navbar.php") ?>
 
     <div class="container">
-      <div id="projects">
-        <div id="projectsHeader">
-          <h2><?php echo $_GET["name"] ?></h2>
-        </div>
-      </div>
+      <h2><?php echo $_GET["name"] ?></h2>
+      <h3>Backlog Product</h3>
+      
     </div>
 
   </body>
