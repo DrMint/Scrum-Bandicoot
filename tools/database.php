@@ -100,12 +100,42 @@
 
     function &getColumns($projectSlug, $sprintIndex) {
       $sprint = &$this->getSprint($projectSlug, $sprintIndex);
-      return $sprint['columns'];   
+      return $sprint['columns'];
     }
 
     function &getColumn($projectSlug, $sprintIndex, $columnIndex) {
       $columns = &$this->getColumns($projectSlug, $sprintIndex);
       return $columns[$columnIndex];
+    }
+
+    function createColumn($projectSlug, $sprintIndex, $title) {
+      $column = &$this->getColumns($projectSlug, $sprintIndex);
+      $newColumn = ["title" => $title, "locked" => false, "maxItem" => -1, "tasks" => []];
+      array_push($column, $newColumn);
+    }
+
+    function setColumnTitle($projectSlug, $sprintIndex, $columnIndex, $newTitle) {
+      $column = &$this->getColumn($projectSlug, $sprintIndex, $columnIndex);
+      $column["title"] = $newTitle;
+    }
+
+    function setColumnLock($projectSlug, $sprintIndex, $columnIndex, $taskIndex, bool $lock) {
+      $column = &$this->getColumn($projectSlug, $sprintIndex, $columnIndex);
+      $column["locked"] = $lock;
+    }
+
+    function setMaxItem($projectSlug, $sprintIndex, $columnIndex, int $maxItem) {
+      $column = &$this->getColumn($projectSlug, $sprintIndex, $columnIndex);
+      $column["maxItem"] = $maxItem;
+    }
+
+    function deleteColumn($projectSlug, $sprintIndex, $columnIndex, $taskIndex) {
+      $column = &$this->getTask($projectSlug, $sprintIndex, $columnIndex);
+      if (!$column["locked"]){
+        array_splice($column, $columnIndex, 1);
+        $column = NULL;
+      }
+      else{echo "Can't delete this column";}
     }
 
     ### TASKS ###
@@ -124,6 +154,27 @@
       $tasks = &$this->getTasks($projectSlug, $sprintIndex, $columnIndex);
       $newTask = ["title" => $title, "description" => "", "assignees" => []];
       array_push($tasks, $newTask);
+    }
+
+    function setTitle($projectSlug, $sprintIndex, $columnIndex, $taskIndex, $newTitle) {
+      $task = &$this->getTask($projectSlug, $sprintIndex, $columnIndex);
+      $task["title"] = $newTitle;
+    }
+
+    function setDescription($projectSlug, $sprintIndex, $columnIndex, $taskIndex, $newDescription) {
+      $task = &$this->getTask($projectSlug, $sprintIndex, $columnIndex);
+      $task["description"] = $newDescription;
+    }
+
+    function setAssignees($projectSlug, $sprintIndex, $columnIndex, $taskIndex, $newAssignees) {
+      $task = &$this->getTask($projectSlug, $sprintIndex, $columnIndex);
+      $task["assignees"] = $newAssignees;
+    }
+
+    function deleteTask($projectSlug, $sprintIndex, $columnIndex, $taskIndex) {
+      $task = &$this->getTask($projectSlug, $sprintIndex, $columnIndex);
+      array_splice($task, $taskIndex, 1);
+      $task = NULL;
     }
 
   }
