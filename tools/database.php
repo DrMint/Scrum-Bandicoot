@@ -151,30 +151,45 @@
     }
 
     function createTask($projectSlug, $sprintIndex, $columnIndex, $title) {
-      $tasks = &$this->getTasks($projectSlug, $sprintIndex, $columnIndex);
+      $tasks = &$this->getTasks($projectSlug, $sprintIndex, $columnIndex, $taskIndex);
       $newTask = ["title" => $title, "description" => "", "assignees" => []];
       array_push($tasks, $newTask);
+      $this->save();
     }
 
-    function setTitle($projectSlug, $sprintIndex, $columnIndex, $taskIndex, $newTitle) {
-      $task = &$this->getTask($projectSlug, $sprintIndex, $columnIndex);
+    function setTaskTitle($projectSlug, $sprintIndex, $columnIndex, $taskIndex, $newTitle) {
+      $task = &$this->getTask($projectSlug, $sprintIndex, $columnIndex, $taskIndex);
       $task["title"] = $newTitle;
+      $this->save();
     }
 
-    function setDescription($projectSlug, $sprintIndex, $columnIndex, $taskIndex, $newDescription) {
-      $task = &$this->getTask($projectSlug, $sprintIndex, $columnIndex);
+    function setTaskDescription($projectSlug, $sprintIndex, $columnIndex, $taskIndex, $newDescription) {
+      $task = &$this->getTask($projectSlug, $sprintIndex, $columnIndex, $taskIndex);
       $task["description"] = $newDescription;
+      $this->save();
     }
 
-    function setAssignees($projectSlug, $sprintIndex, $columnIndex, $taskIndex, $newAssignees) {
-      $task = &$this->getTask($projectSlug, $sprintIndex, $columnIndex);
-      $task["assignees"] = $newAssignees;
+    function addTaskAssignee($projectSlug, $sprintIndex, $columnIndex, $taskIndex, $newAssignee) {
+      $task = &$this->getTask($projectSlug, $sprintIndex, $columnIndex, $taskIndex);
+      if (!in_array($newAssignee, $task["assignees"])) {
+        array_push($task["assignees"], $newAssignee);
+        $this->save();
+      }      
+    }
+
+    function removeTaskAssignee($projectSlug, $sprintIndex, $columnIndex, $taskIndex, $assignee) {
+      $task = &$this->getTask($projectSlug, $sprintIndex, $columnIndex, $taskIndex);
+      $assigneeIndex = array_search($assignee, $task["assignees"]);
+      if (in_array($assignee, $task["assignees"])) {
+        array_splice($task["assignees"], array_search($assignee, $task["assignees"]), 1);
+        $this->save();
+      }
     }
 
     function deleteTask($projectSlug, $sprintIndex, $columnIndex, $taskIndex) {
-      $task = &$this->getTask($projectSlug, $sprintIndex, $columnIndex);
-      array_splice($task, $taskIndex, 1);
-      $task = NULL;
+      $tasks = &$this->getTasks($projectSlug, $sprintIndex, $columnIndex);
+      array_splice($tasks, $taskIndex, 1);
+      $this->save();
     }
 
   }
