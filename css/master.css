@@ -86,5 +86,5 @@ body {
 
 a {
   text-decoration: none;
-  color: var(--color-main-dark)
+  color: unset
 }

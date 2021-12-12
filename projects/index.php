@@ -15,7 +15,6 @@
         <div id="projectsHeader">
           <h2><?php echo $_GET["name"] ?></h2>
         </div>
-        
       </div>
     </div>
 
