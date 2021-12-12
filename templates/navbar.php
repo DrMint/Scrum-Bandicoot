@@ -1,8 +1,9 @@
 <link rel="stylesheet" href="/css/navbar.css">
 
-<?php require_once($_SERVER["DOCUMENT_ROOT"] . "/tools/users.php") ?>
-
 <?php
+
+  require_once($_SERVER["DOCUMENT_ROOT"] . "/tools/database.php");
+  $DB = new Database();
 
   ini_set('display_errors', 1);
   ini_set('display_startup_errors', 1);
@@ -24,7 +25,7 @@
 <div id="navbar">
   <h1>Scrum Bandicoot</h1>
   <div id="logout">
-    <p>Welcome <?php echo getCurrentUser()->slug; ?></p>
+    <p>Welcome <?php echo $DB->getCurrentUser()['slug']; ?></p>
     <a class="button invert outline" href="/logout">Logout</a>
   </div>
 </div>

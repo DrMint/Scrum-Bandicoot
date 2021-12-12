@@ -18,23 +18,18 @@
           <a id="joinProject" class="button outline" href="/projects/join">Join a project</a>
         </div>
         <div id="projectsList">
-          <?php
-              require_once($_SERVER["DOCUMENT_ROOT"] . "/tools/project.php");
-              
-              foreach (project\getListSlug() as $slug) {
-                $project = new project\Project($slug);
-                if (in_array(getCurrentUser()->slug, $project->members)) {
-                  echo '<a class="project" href="/projects/?name=' . $project->name . '">';
+          <?php        
+              foreach ($DB->getProjects() as $project) {
+                if (in_array($DB->getCurrentUser()['slug'], $project['members'])) {
+                  echo '<a class="project" href="/projects/?name=' . $project['slug'] . '">';
                       echo '<img src="/img/default-project.webp" alt="">';
-                      echo "<h3>$project->name</h3>";
+                      echo '<h3>' . $project['slug'] . '</h3>';
                   echo '</a>';
                 }
               }
             ?>
         </div>
-        
       </div>
     </div>
-
   </body>
 </html>

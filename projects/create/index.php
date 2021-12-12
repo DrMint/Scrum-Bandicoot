@@ -16,17 +16,13 @@
         $name = filter_var($_POST["name"], FILTER_SANITIZE_STRING);
         $slug = strtolower($name);
         $slug = preg_replace('/[^A-Za-z0-9-]+/', '-', $slug);
-        
-        require_once($_SERVER["DOCUMENT_ROOT"] . "/tools/project.php");
 
-        if (!project\exist($slug)) {
-          $project = new project\Project($slug);
-          $project->setName($name);
-          $project->addMember(getCurrentUser()->slug);
-          $project->write();
+        if (!$DB->projectExists($slug)) {
+          $DB->createProject($slug);
+          $DB->projectAddUser($slug, $DB->getCurrentUser()['slug']);
           header('Location: /');
         } else {
-
+          echo "There is already a project with this name. Please choose another name.";
         }
 
 

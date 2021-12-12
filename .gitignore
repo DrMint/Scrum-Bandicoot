@@ -1,7 +1,2 @@
-data/users/*
-data/projects/*
-
-
-
-
+db.json
 !.gitkeep

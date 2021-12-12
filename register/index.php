@@ -16,19 +16,21 @@
     if (isset($_POST['submitButton'])) {
 
       $username = filter_var($_POST["username"], FILTER_SANITIZE_STRING);
+      $slug = strtolower($username);
+      $slug = preg_replace('/[^A-Za-z0-9-]+/', '-', $slug);
+      
       $password = filter_var($_POST["password"], FILTER_SANITIZE_STRING);
-
-      require_once($_SERVER["DOCUMENT_ROOT"] . "/tools/crypto.php");
 
       if (session_status() == PHP_SESSION_NONE) {
         session_start();
       }
 
-      if (!exist($username)) {
-        $user = new User($username);
-        $user->setHash(generateHash($password));
-        $user->write();
-        $_SESSION['loginUsername'] = $username;
+      require_once($_SERVER["DOCUMENT_ROOT"] . "/tools/database.php");
+      $DB = new Database();
+
+      if (!$DB->userExists($slug)) {
+        $DB->createUser($slug, $password);
+        $_SESSION['loginUsername'] = $slug;
         header('Location: /');
       } else {
         unset($_SESSION['loginUsername']);

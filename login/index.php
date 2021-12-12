@@ -8,24 +8,33 @@
     <link rel="stylesheet" href="/css/login.css">
   </head>
 
+  
 
   <body>
 
     <?php
 
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
+
     if (isset($_POST['submitButton'])) {
 
       $username = filter_var($_POST["username"], FILTER_SANITIZE_STRING);
-      $password = filter_var($_POST["password"], FILTER_SANITIZE_STRING);
+      $slug = strtolower($username);
+      $slug = preg_replace('/[^A-Za-z0-9-]+/', '-', $slug);
 
-      require_once($_SERVER["DOCUMENT_ROOT"] . "/tools/crypto.php");
+      $password = filter_var($_POST["password"], FILTER_SANITIZE_STRING);
 
       if (session_status() == PHP_SESSION_NONE) {
         session_start();
       }
 
-      if (verifyKey($username, $password)) {
-        $_SESSION['loginUsername'] = $username;
+      require_once($_SERVER["DOCUMENT_ROOT"] . "/tools/database.php");
+      $DB = new Database();
+
+      if ($DB->verifyCredentials($slug, $password)) {
+        $_SESSION['loginUsername'] = $slug;
         header('Location: /');
       } else {
         unset($_SESSION['loginUsername']);
