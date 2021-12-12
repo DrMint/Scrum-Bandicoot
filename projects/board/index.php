@@ -12,7 +12,7 @@
 
     <div class="container">
       <?php
-        /*require_once($_SERVER["DOCUMENT_ROOT"] . "/tools/board.php");*/
+        require_once($_SERVER["DOCUMENT_ROOT"] . "/tools/board.php");
       ?>
 
       <div class="board-column">
@@ -20,6 +20,11 @@
         <div class="board-form">
           <input value="" type="text" name="backlog" style="height: 30px; width: 70%" autocomplete="off"/>
           <button type="submit" name="save-backlog">Save</button>
+        </div>
+        <div class="board-items">
+          <?php foreach (getTasks('backlog') as $task):?>
+            <?php echo showTask($task,'backlog');?>
+          <?php endforeach;?>
         </div>
       </div>
 
