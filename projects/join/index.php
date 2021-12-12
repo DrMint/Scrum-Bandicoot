@@ -20,6 +20,19 @@
         }
         
        ?>
+
+<div class="board-column">
+    <h3>Backlog</h3>
+    <div class="board-form">
+      <input value="<?php echo get_active_value("backlog", $activeTask);?>" type="text" name="backlog" style="height: 30px; width: 70%" autocomplete="off"/>
+      <button type="submit" name="save-backlog">Save</button>
+    </div>
+    <div class="board-items">
+      <?php foreach (get_tasks('backlog') as $task):?>
+          <?php echo show_tile($task,'backlog');?>
+      <?php endforeach;?>
+    </div>
+  </div>
     </div>
 
   </body>
