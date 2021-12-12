@@ -12,3 +12,36 @@
 .container {
   padding: 2rem;
 }
+
+#projects > #projectsList {
+  grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+  display: grid;
+  grid-gap: 1.2rem;
+}
+
+#projects > #projectsList > .project {
+  border: solid 1px var(--color-main-dark);
+  display: grid;
+  place-content: center;
+  place-items: center;
+  border-radius: .5rem;
+  box-shadow: 0 0.2rem 0 var(--color-main-dark);
+  transition: cubic-bezier(.43,-0.01,.5,1.97) .1s;
+  transition-property: box-shadow transform;
+}
+
+#projects > #projectsList > .project:hover {
+  box-shadow: 0 0.7rem 0 var(--color-main-dark);
+  transform: translateY(-0.5rem);
+}
+
+#projects > #projectsList > .project > img {
+  width: 100%;
+  border-radius: 0.5rem;
+}
+
+
+#projects > #projectsList > .project > h3 {
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
