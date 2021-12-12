@@ -22,6 +22,7 @@
         if (!project\exist($slug)) {
           $project = new project\Project($slug);
           $project->setName($name);
+          $project->addMember(getCurrentUser()->slug);
           $project->write();
           header('Location: /');
         } else {

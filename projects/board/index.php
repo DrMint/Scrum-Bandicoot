@@ -12,7 +12,7 @@
 
     <div class="container">
       <?php
-        require_once($_SERVER["DOCUMENT_ROOT"] . "/tools/board.php");
+        /*require_once($_SERVER["DOCUMENT_ROOT"] . "/tools/board.php");*/
       ?>
 
       <div class="board-column">

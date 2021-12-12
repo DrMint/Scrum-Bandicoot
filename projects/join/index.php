@@ -16,7 +16,9 @@
 
         foreach (project\getListSlug() as $slug) {
           $project = new project\Project($slug);
-          echo $project->name;
+          if (!in_array(getCurrentUser()->slug, $project->members)) {
+            echo "$project->name<br>";
+          }
         }
         
        ?>

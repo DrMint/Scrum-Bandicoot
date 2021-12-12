@@ -5,6 +5,8 @@
   class Project {
     public $slug;
     public $name;
+    public $members;
+    public $tasks;
 
     function __construct($slug = '') {
       if (exist($slug)) {
@@ -12,12 +14,23 @@
         foreach ($json as $key => $value) {
           $this->$key = $value;
         }
+      } else {
+        $this->members = [];
+        $this->tasks = [];
       }
       $this->slug = $slug;
     }
 
     function setName($name) {
       $this->name = $name;
+    }
+
+    function addMember($username) {
+      array_push($this->members, $username);
+    }
+
+    function addTasks($task) {
+      array_push($this->tasks, $task);
     }
 
     function write() {

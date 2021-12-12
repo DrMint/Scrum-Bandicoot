@@ -44,7 +44,7 @@
        <input type="password" name="password" placeholder="Password" autocomplete="current-password" required>
        <button type="submit" name="submitButton" value="Submit">Sign In</button>
      </form>
-     <?php if (isset($formMessage)) "<p id='answer'>$formMessage</p>" ?>
+     <?php if (isset($formMessage)) echo "<p id='answer'>$formMessage</p>" ?>
      <p>New to Scrum Bandicoot?<br>
      <a href="/register">Create an account</a></p>
    </div>
