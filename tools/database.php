@@ -89,6 +89,15 @@
       return $project['backlogProduct'];
     }
 
+    function removeProject($projectSlug, $userSlug) {
+      $project = &$this->getProject($projectSlug);
+      $userIndex = array_search($userSlug, $project['members']);
+      if ($userIndex){
+        array_splice($project['members'], $userIndex, 1);
+      }
+      $this->save();
+    }
+
     ### SPRINT ###
 
     function &getSprints($projectSlug) {

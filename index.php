@@ -18,7 +18,7 @@
           <a id="joinProject" class="button outline" href="/projects/join">Join a project</a>
         </div>
         <div id="projectsList">
-          <?php        
+          <?php
               foreach ($DB->getProjects() as $project) {
                 if (in_array($DB->getCurrentUser()['slug'], $project['members'])) {
                   echo '<a class="project" href="/projects/?project=' . $project['slug'] . '">';
