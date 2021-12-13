@@ -12,3 +12,7 @@
   grid-column-gap: 2rem;
   place-items: center end;
 }
+
+#navbar > #home{
+  color: white;
+}

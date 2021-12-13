@@ -23,7 +23,7 @@
   ?>
 
 <div id="navbar">
-  <h1>Scrum Bandicoot</h1>
+  <a id="home" href="/"><h1>Scrum Bandicoot</h1></a>
   <div id="logout">
     <p>Welcome <?php echo $DB->getCurrentUser()['slug']; ?></p>
     <a class="button invert outline" href="/logout">Logout</a>
