@@ -72,6 +72,10 @@
       return !is_null($this->getProject($slug));
     }
 
+    function userInProject($projectSlug, $userSlug) {
+      return in_array($userSlug, $this->getProject($projectSlug)['members']);
+    }
+
     function createProject($slug) {
       $newProject = ["slug" => $slug, "members" => [], "backlogProduct" => [], "sprints" => []];
       array_push($this->data['projects'], $newProject);
@@ -79,9 +83,11 @@
     }
 
     function projectAddUser($projectSlug, $userSlug) {
-      $project = &$this->getProject($projectSlug);
-      array_push($project['members'], $userSlug);
-      $this->save();
+      if ($this->projectExists($projectSlug) and !$this->userInProject($projectSlug, $userSlug)) {
+        $project = &$this->getProject($projectSlug);
+        array_push($project['members'], $userSlug);
+        $this->save();
+      }
     }
 
     function &getProjectBacklog($projectSlug) {
@@ -89,13 +95,14 @@
       return $project['backlogProduct'];
     }
 
-    function removeProject($projectSlug, $userSlug) {
-      $project = &$this->getProject($projectSlug);
-      $userIndex = array_search($userSlug, $project['members']);
-      if ($userIndex){
+    function projectRemoveUser($projectSlug, $userSlug) {
+      var_dump($userIndex);
+      if ($this->projectExists($projectSlug) and $this->userInProject($projectSlug, $userSlug)) {
+        $project = &$this->getProject($projectSlug);
+        $userIndex = array_search($userSlug, $project['members']);
         array_splice($project['members'], $userIndex, 1);
+        $this->save();
       }
-      $this->save();
     }
 
     ### SPRINT ###
