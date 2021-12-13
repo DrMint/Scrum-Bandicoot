@@ -1,4 +1,23 @@
-|  id  | Type  | Actions  | Attendu  | Résultats  | Commentaire  | Date  | Testeur  |
-| ---- | ------- | ----------- | ----------- | ------------- | ------------------- | ------- | ----------- |
-|  1  |  TU  |  users.createUser() |  Creation d'un object User dont le nom est 'ut-test'  |  OK  |   | 2021-11-24 13:25:59  |  N/A  |
-|  2  |   TU  | users.retrieveExistingUser()  |  Création d'un object User avec un nom existant. Verification que le hash utilisateur est celui attendu  | OK  |   | 2021-11-24 13:29:36  |  N/A  |
+
+## Prerequisites
+We suppose the project is completely new, a fresh new clone of the repository.
+Credentials are formed as follows: username / password. So if asked to enter the credentials *demo* / *wrong*, the username should be *demo* and password should be *wrong*. 
+
+### Account creation, login, logout
+
+| Step | Actions                                                                                                          | Expected                                                                                                                                  | Result | Comment |    Timestamp     | Tester  |
+|:----:| ---------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |:------:| ------- |:----------------:|:-------:|
+|  1   | You access for the first time the app's [home page](http://localhost:3000)                                       | Because you are not logged in, you should be redirect to the [login page](http://localhost:3000/login)                                    |   OK   |         | 2021-12-11 16:28 | Dr_Mint |
+|  2   | You want to create an account. Click on [Create an account](http://localhost:3000/register)                      | You are redirected to the [register page](http://localhost:3000/register)                                                                 |   OK   |         | 2021-12-11 16:40 | Dr_Mint |
+|  3   | You enters the credentials for your new account (we'll use demo / demo). Then, press the *Create account* button | You are now logged in, you have been redirected to the [home page](http://localhost:3000), it says *Welcome demo* in the top right corner |   OK   |         | 2021-12-11 17:03 | Dr_Mint |
+|  4   | You click on the *logout* button in the top right corner.                                                        | You have been logged off and redirected to the [login page](http://localhost:3000/login).                                                 |   OK   |         | 2021-12-11 17:06 | Dr_Mint |
+|  5   | To make sure you are really logged off, try reaching the [home page](http://localhost:3000) once again           | You should be redirect to the [login page](http://localhost:3000/login)                                                                   |   OK   |         | 2021-12-11 17:07 | Dr_Mint |
+
+### Account creation goes wrong
+A *demo* account already exists. We would like to test how the system reacts when trying to create another account with the same username. Furthurmore, we will try to connect using the wrong password.
+
+| Step | Actions                                                                                                                                              | Expected                                                                                                                                                             | Result | Comment             |    Timestamp     | Tester  |
+|:----:| ---------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |:------:| ------------------- |:----------------:|:-------:|
+|  1   | You access the [Create an account](http://localhost:3000/register) page. You enter the credentials demo / demo and press the *Create account* button | The form visually shakes and the following message is displayed underneath the *Create account* button: *This username is already taken, please choose another one.* |   OK   |                     | 2021-12-11 17:17 | Dr_Mint |
+|  2   | On the same, you try to enter characters other than lowercase alphanumerical characters (we'll use *My U$ername*)                                    | The input should make the characters lowercase, replace spaces with dashes, and forbig entering specials characters: *my-uername*                                    |  FAIL  | Not yet implemented | 2021-12-11 17:50 | Dr_Mint        |
+|  3   | You click on the [Sign in](http://localhost:3000/login) label. You enter the credentials demo / wrong and press the *Sign in* button                 | The form visually shakes and the following message is displayed underneath the *Sign in* button: *The account name or password that you have entered is incorrect.*  |   OK   |                     | 2021-12-11 17:21 | Dr_Mint |

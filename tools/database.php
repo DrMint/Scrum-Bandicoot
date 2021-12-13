@@ -84,6 +84,11 @@
       $this->save();
     }
 
+    function &getProjectBacklog($projectSlug) {
+      $project = &$this->getProject($projectSlug);
+      return $project['backlogProduct'];
+    }
+
     ### SPRINT ###
 
     function &getSprints($projectSlug) {
@@ -157,6 +162,19 @@
       $this->save();
     }
 
+    function moveTask($projectSlug, $sprintIndex, $columnIndex, $taskIndex, $newColumnIndex) {
+      $task = $this->getTask($projectSlug, $sprintIndex, $columnIndex, $taskIndex);
+      $this->insertTask($projectSlug, $sprintIndex, $newColumnIndex, $task);
+      $this->deleteTask($projectSlug, $sprintIndex, $columnIndex, $taskIndex);
+      $this->save();
+    }
+
+    function insertTask($projectSlug, $sprintIndex, $columnIndex, $task) {
+      $tasks = &$this->getTasks($projectSlug, $sprintIndex, $columnIndex);
+      array_unshift($tasks, $task);
+      $this->save();
+    }
+
     function setTaskTitle($projectSlug, $sprintIndex, $columnIndex, $taskIndex, $newTitle) {
       $task = &$this->getTask($projectSlug, $sprintIndex, $columnIndex, $taskIndex);
       $task["title"] = $newTitle;
@@ -184,6 +202,12 @@
         array_splice($task["assignees"], array_search($assignee, $task["assignees"]), 1);
         $this->save();
       }
+    }
+
+    function setTaskAssignees($projectSlug, $sprintIndex, $columnIndex, $taskIndex, $assignees) {
+      $task = &$this->getTask($projectSlug, $sprintIndex, $columnIndex, $taskIndex);
+      $task['assignees'] = $assignees;
+      $this->save();
     }
 
     function deleteTask($projectSlug, $sprintIndex, $columnIndex, $taskIndex) {

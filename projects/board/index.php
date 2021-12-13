@@ -4,53 +4,129 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href="/css/master.css">
     <link rel="stylesheet" href="/css/board.css">
-    <title>Scrum Bandicoot</title>
+    <title>Scrum Bandicoot - <?php echo $_GET["project"] ?></title>
   </head>
   <body>
 
     <?php require_once($_SERVER["DOCUMENT_ROOT"] . "/templates/navbar.php") ?>
+    <?php require_once($_SERVER["DOCUMENT_ROOT"] . "/tools/board.php"); ?>
+
+    <?php
+
+      
+      if (!isset($_GET['project']) or !isset($_GET['sprint'])) {
+        header('Location: /' . $slug);
+      }
+      
+    
+    ?>
 
     <div class="container">
+        
       <?php
-        require_once($_SERVER["DOCUMENT_ROOT"] . "/tools/board.php");
+
+        $slug = filter_var($_GET['project'], FILTER_SANITIZE_STRING);
+        $slug = strtolower($slug);
+        $slug = preg_replace('/[^A-Za-z0-9-]+/', '-', $slug);
+
+        $sprint = filter_var($_GET['sprint'], FILTER_SANITIZE_STRING);
+
+        echo '<div class="board-container">';
+          displayColumns($slug, $sprint, $DB->getColumns($slug, $sprint));
+        echo '</div>';
+
+        if (isset($_GET['action'])) {
+          $action = filter_var($_GET['action'], FILTER_SANITIZE_STRING);
+          
+          if ($action === 'left') {
+
+            if (isset($_GET['task'])) {
+              $column = filter_var($_GET['column'], FILTER_SANITIZE_STRING);
+              $task = filter_var($_GET['task'], FILTER_SANITIZE_STRING);
+              $DB->moveTask($slug, $sprint, $column, $task, $column - 1);
+            } else {
+              # TODO for column
+            }
+            header('Location: ?project=' . $slug . "&sprint=" . $sprint);
+
+          } elseif ($action == 'right') {
+
+            if (isset($_GET['task'])) {
+              $column = filter_var($_GET['column'], FILTER_SANITIZE_STRING);
+              $task = filter_var($_GET['task'], FILTER_SANITIZE_STRING);
+              $DB->moveTask($slug, $sprint, $column, $task, $column + 1);
+            } else {
+              # TODO for column
+            }
+            header('Location: ?project=' . $slug . "&sprint=" . $sprint);
+
+          } elseif ($action == 'delete') {
+
+            if (isset($_GET['task'])) {
+              $column = filter_var($_GET['column'], FILTER_SANITIZE_STRING);
+              $task = filter_var($_GET['task'], FILTER_SANITIZE_STRING);
+              $DB->deleteTask($slug, $sprint, $column, $task);
+            } else {
+              # TODO for column
+            }
+            header('Location: ?project=' . $slug . "&sprint=" . $sprint);
+
+          } elseif ($action == 'edit') {
+
+            if (isset($_GET['task'])) {
+              $column = filter_var($_GET['column'], FILTER_SANITIZE_STRING);
+              $task = filter_var($_GET['task'], FILTER_SANITIZE_STRING);
+
+              if (isset($_POST['submitButton'])) {
+                $title = filter_var($_POST['title'], FILTER_SANITIZE_STRING);
+                $description = filter_var($_POST['description'], FILTER_SANITIZE_STRING);
+                $assignees = $_POST['assignees'];
+                $DB->setTaskTitle($slug, $sprint, $column, $task, $title);
+                $DB->setTaskDescription($slug, $sprint, $column, $task, $description);
+                $DB->setTaskAssignees($slug, $sprint, $column, $task, $assignees);
+                header('Location: ?project=' . $slug . "&sprint=" . $sprint);
+              } else {
+                $column = filter_var($_GET['column'], FILTER_SANITIZE_STRING);
+                $taskIndex = filter_var($_GET['task'], FILTER_SANITIZE_STRING);
+                $task = $DB->getTask($slug, $sprint, $column, $taskIndex);
+                $members = $DB->getProject($slug)['members'];
+                displayFormEdit($slug, $sprint, $column, $taskIndex, $task, $members);
+              }
+
+            } else {
+              # TODO for column
+            }
+
+          } elseif ($action == 'view') {
+
+            $column = filter_var($_GET['column'], FILTER_SANITIZE_STRING);
+            $task = filter_var($_GET['task'], FILTER_SANITIZE_STRING);
+            $task = $DB->getTask($slug, $sprint, $column, $task);
+            displayFormView($slug, $sprint, $task);
+
+
+          } elseif ($action == 'create') {
+
+            if (isset($_GET['column'])) {
+              $column = filter_var($_GET['column'], FILTER_SANITIZE_STRING);
+              
+              if (isset($_POST['submitButton'])) {
+                $title = filter_var($_POST['title'], FILTER_SANITIZE_STRING);
+                $DB->createTask($slug, $sprint, $column, $title);
+                header('Location: ?project=' . $slug . "&sprint=" . $sprint);
+              } else {
+                displayFormCreation($slug, $sprint, $column );
+              }
+
+            } else {
+              # TODO for column
+            }
+
+          }
+        }
+      
+      
       ?>
-
-      <div class="board-column">
-        <h3>Backlog</h3>
-        <div class="board-form">
-          <input value="" type="text" name="backlog" style="height: 30px; width: 70%" autocomplete="off"/>
-          <button type="submit" name="save-backlog">Save</button>
-        </div>
-        <div class="board-items">
-          <?php foreach (getTasks('backlog') as $task):?>
-            <?php echo showTask($task,'backlog');?>
-          <?php endforeach;?>
-        </div>
-      </div>
-
-      <div class="board-column">
-        <h3>In Progress</h3>
-        <div class="board-form">
-          <input value="" type="text" name="progress" style="height: 30px; width: 70%" autocomplete="off"/>
-          <button type="submit" name="save-progress">Save</button>
-        </div>
-      </div>
-
-      <div class="board-column">
-        <h3>Pending</h3>
-        <div class="board-form">
-          <input value="" type="text" name="pending" style="height: 30px; width: 70%" autocomplete="off"/>
-          <button type="submit" name="save-pending">Save</button>
-        </div>
-      </div>
-
-      <div class="board-column">
-        <h3>Completed</h3>
-        <div class="board-form">
-          <input value="" type="text" name="completed" style="height: 30px; width: 70%" autocomplete="off"/>
-          <button type="submit" name="save-completed">Save</button>
-        </div>
-      </div>
 
     </div>
   </body>

@@ -2,6 +2,7 @@
 
 <?php
 
+  require_once($_SERVER["DOCUMENT_ROOT"] . "/tools/master.php");
   require_once($_SERVER["DOCUMENT_ROOT"] . "/tools/database.php");
   $DB = new Database();
 
@@ -12,7 +13,7 @@
   // Authentification check
   if (session_status() == PHP_SESSION_NONE) session_start();
   if (!isset($_SESSION['loginUsername'])) {
-    header('Location: /login');
+    redirect('/login');
   }
  ?>
 

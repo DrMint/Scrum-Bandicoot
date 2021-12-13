@@ -1,31 +1,124 @@
-.board-column{
+.board-container {
+    display: grid;
+    grid-auto-flow: column;
+    overflow-x: scroll;
+    min-height: calc(100vh - 8rem);
+    scrollbar-width: none;
+}
+
+.board-column {
     float: left;
-    width: 20%;
-    background:#ebecf0;
-    padding: 5px;
-    margin-right: 5px;
-    min-height: 924px;
-
+    background-color: var(--color-main-light);
+    padding: 0.6em;
+    min-width: 20em;
+    border-right: 1px solid var(--color-main-dark);    
 }
 
-.board-column h3{
-    margin-left: 5px;
+.board-column > h2 {
+    margin-top: 0.5em;
 }
 
-.board {
-    min-height: 30px;
-    padding: 10px;
-    background: white;
-    box-shadow:4px 4px 10px rgba(0,0,0,0.06);
-    width: 91%;
+.board-actions {
+    display: grid;
+    grid-auto-flow: column;
+    place-items: center;
+    font-weight: bold;
+    place-self: center;
+    grid-gap: 1.5em;
+    height: 0;
+    opacity: 0;
+    transition: ease-in-out 0.1s;
+    transition-property: height, opacity;
+}
+
+.board-actions > a:hover {
+    color: unset;
+}
+
+.board-card {
+    background: var(--color-main-base);
+    padding: 0.5em 1em;
+    margin-bottom: 0.7em;
+    border-radius: 1em;
+    display: grid;
+}
+
+.board-card:hover > .board-actions {
+    height: 1.4em;
+    opacity: 1;
+}
+
+.board-task-create > a {
+    text-align: center;
+    font-weight: bold;
+}
+
+.board-task-create > a:hover {
+    color: unset;
+}
+
+.board-assignees > p {
+    background-color: var(--color-main-light);
     display: inline-block;
-    margin: 5px;
-    border-radius: 3px;
+    padding: 0.3em 0.7em;
+    border-radius: 1em;
 }
-.board-form  button {
-    height: 35px;
+
+.board-column h2{
+    text-align: center;
 }
 
 .board-form {
-    margin-left: 5px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: grid;
+    place-content: center;
+}
+
+.board-form .background {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: var(--color-main-dark);
+    opacity: 0.7;
+}
+
+.board-form > form {
+    padding: 2em;
+    background: var(--color-main-light);
+    border-radius: 1em;
+    z-index: 10;
+    box-shadow: 0 0 3em var(--color-main-dark);
+    display: grid;
+    place-content: center;
+    grid-gap: 1em;
+}
+
+.board-form > form > button {
+    place-self: center;
+}
+
+.board-form > form > .title {
+    font-size: 120%;
+}
+
+.board-form > form > * {
+    text-align: center;
+}
+
+.board-form > form > h2 {
+    margin: 0;
+}
+
+.board-assignees {
+    display: grid;
+    grid-auto-flow: column;
+    grid-gap: 0.5em;
+    place-items: start;
+    place-content: start;
 }

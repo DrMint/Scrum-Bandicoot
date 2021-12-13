@@ -15,13 +15,13 @@
 body {
   background: var(--color-main-light);
   color: var(--color-main-black);
-  font-family: customFont;
   margin: 0;
   padding: 0;
 }
 
 * {
   box-sizing: border-box;
+  font-family: customFont;
 }
 
 .button {
@@ -87,4 +87,28 @@ body {
 a {
   text-decoration: none;
   color: var(--color-main-dark)
+}
+
+input {
+  background-color: var(--color-main-light);
+  padding: 0.3em 1.1em;
+  border-radius: 100vmax;
+  margin-left: 0.3em;
+  margin-right: 0.3em;
+  display: grid;
+  place-content: center;
+  border: 1px solid var(--color-main-base);
+}
+
+textarea {
+  border: 1px solid var(--color-main-base);
+  border-radius: 1.5em;
+  padding: 1em 0.5em;
+  min-width: 20em;
+  min-height: 4em;
+}
+
+
+input:focus-visible, textarea:focus-visible {
+  outline: 1px solid var(--color-main-dark);
 }

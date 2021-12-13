@@ -21,7 +21,7 @@
           <?php        
               foreach ($DB->getProjects() as $project) {
                 if (in_array($DB->getCurrentUser()['slug'], $project['members'])) {
-                  echo '<a class="project" href="/projects/?name=' . $project['slug'] . '">';
+                  echo '<a class="project" href="/projects/?project=' . $project['slug'] . '">';
                       echo '<img src="/img/default-project.webp" alt="">';
                       echo '<h3>' . $project['slug'] . '</h3>';
                   echo '</a>';

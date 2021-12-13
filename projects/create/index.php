@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href="/css/master.css">
     <link rel="stylesheet" href="/css/home.css">
-    <title>Scrum Bandicoot - Home</title>
+    <title>Scrum Bandicoot - Create project</title>
   </head>
   <body>
 
@@ -20,7 +20,7 @@
         if (!$DB->projectExists($slug)) {
           $DB->createProject($slug);
           $DB->projectAddUser($slug, $DB->getCurrentUser()['slug']);
-          header('Location: /projects/?name=' . $slug);
+          header('Location: /projects/?project=' . $slug);
         } else {
           echo "There is already a project with this name. Please choose another name.";
         }

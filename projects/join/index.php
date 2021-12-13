@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href="/css/master.css">
     <link rel="stylesheet" href="/css/home.css">
-    <title>Scrum Bandicoot - Home</title>
+    <title>Scrum Bandicoot - Join a project</title>
   </head>
   <body>
 
@@ -37,7 +37,7 @@
           <?php        
               foreach ($DB->getProjects() as $project) {
                 if (!in_array($DB->getCurrentUser()['slug'], $project['members'])) {
-                  echo '<div class="project" href="/projects/?name=' . $project['slug'] . '">';
+                  echo '<div class="project" href="/projects/?project=' . $project['slug'] . '">';
                       echo '<img src="/img/default-project.webp" alt="">';
                       echo '<h3>' . $project['slug'] . '</h3>';
                       echo '<a class="button outline" href="?slug=' . $project['slug'] . '">Join</a>';
