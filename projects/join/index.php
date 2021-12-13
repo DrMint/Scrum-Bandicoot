@@ -19,7 +19,7 @@
 
         if ($DB->projectExists($slug)) {
           $DB->projectAddUser($slug, $DB->getCurrentUser()['slug']);
-          header('Location: /projects/?name=' . $slug);
+          header('Location: /projects/?project=' . $slug);
         } else {
           echo "A problem occured while trying to join this project.";
         }
@@ -37,7 +37,7 @@
           <?php        
               foreach ($DB->getProjects() as $project) {
                 if (!in_array($DB->getCurrentUser()['slug'], $project['members'])) {
-                  echo '<div class="project" href="/projects/?project=' . $project['slug'] . '">';
+                  echo '<div class="project">';
                       echo '<img src="/img/default-project.webp" alt="">';
                       echo '<h3>' . $project['slug'] . '</h3>';
                       echo '<a class="button outline" href="?slug=' . $project['slug'] . '">Join</a>';
