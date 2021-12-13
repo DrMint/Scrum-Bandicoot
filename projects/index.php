@@ -11,7 +11,7 @@
     <?php require_once($_SERVER["DOCUMENT_ROOT"] . "/templates/navbar.php") ?>
     <?php if(isset($_GET["leave"])){
             $slug = filter_var($_GET["project"], FILTER_SANITIZE_STRING);
-            $DB->removeProject($slug,$_SESSION["loginUsername"]);
+            $DB->projectRemoveUser($slug, $DB->getCurrentUser()['slug']);
             header('Location: /');
           }
     ?>
