@@ -112,3 +112,50 @@ textarea {
 input:focus-visible, textarea:focus-visible {
   outline: 1px solid var(--color-main-dark);
 }
+
+.popup-form {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: grid;
+  place-content: center;
+}
+
+.popup-form .background {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--color-main-dark);
+  opacity: 0.7;
+}
+
+.popup-form > form {
+  padding: 2em;
+  background: var(--color-main-light);
+  border-radius: 1em;
+  z-index: 10;
+  box-shadow: 0 0 3em var(--color-main-dark);
+  display: grid;
+  place-content: center;
+  grid-gap: 1em;
+}
+
+.popup-form > form > button {
+  place-self: center;
+}
+
+.popup-form > form > .title {
+  font-size: 120%;
+}
+
+.popup-form > form > * {
+  text-align: center;
+}
+
+.popup-form > form > h2 {
+  margin: 0;
+}

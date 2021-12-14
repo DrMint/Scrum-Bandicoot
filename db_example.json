@@ -7,19 +7,30 @@
                 "gerald",
                 "glados"
             ],
-            "backlogProduct": [
-                {
-                    "title": "My first task",
-                    "description": "This is a task, and it's mine!",
-                    "assignees": []
-                },
-                {
-                    "title": "A second task",
-                    "description": "This is another task, not mine, yet...",
-                    "assignees": []
-                }
-            ],
             "sprints": [
+                {
+                    "beginning": -1,
+                    "ending": -1,
+                    "columns": [
+                        {
+                            "title": "Backlog Sprint",
+                            "locked": true,
+                            "maxItem": -1,
+                            "tasks": [
+                                {
+                                    "title": "My first task",
+                                    "description": "This is a task, and it's mine!",
+                                    "assignees": []
+                                },
+                                {
+                                    "title": "A second task",
+                                    "description": "This is another task, not mine, yet...",
+                                    "assignees": []
+                                }
+                            ]
+                        }
+                    ]
+                },
                 {
                     "beginning": 1639228153,
                     "ending": 1640437753,
@@ -78,22 +89,75 @@
                             "tasks": []
                         }
                     ]
+                },
+                {
+                    "beginning": 1640537753,
+                    "ending": 1642437753,
+                    "columns": [
+                        {
+                            "title": "Backlog Sprint",
+                            "locked": true,
+                            "maxItem": -1,
+                            "tasks": [
+                                {
+                                    "title": "Finish the project",
+                                    "description": "",
+                                    "assignees": []
+                                },
+                                {
+                                    "title": "Get Stacy out of the broom closet",
+                                    "description": "Because, why not?!",
+                                    "assignees": []
+                                }
+                            ]
+                        },
+                        {
+                            "title": "To do",
+                            "maxItem": -1,
+                            "locked": false,
+                            "tasks": []
+                        },
+                        {
+                            "title": "Doing",
+                            "maxItem": -1,
+                            "locked": false,
+                            "tasks": []
+                        },
+                        {
+                            "title": "Review",
+                            "locked": false,
+                            "maxItem": 4,
+                            "tasks": []
+                        },
+                        {
+                            "title": "Done",
+                            "locked": true,
+                            "maxItem": -1,
+                            "tasks": []
+                        }
+                    ]
                 }
             ]
         },
         {
             "slug": "new-project",
             "members": [
-                "demo"
+                ""
             ],
-            "backlogProduct": [],
-            "sprints": []
-        },
-        {
-            "slug": "new-project2",
-            "members": [],
-            "backlogProduct": [],
-            "sprints": []
+            "sprints": [
+                {
+                    "beginning": -1,
+                    "ending": -1,
+                    "columns": [
+                        {
+                            "title": "Backlog Sprint",
+                            "locked": true,
+                            "maxItem": -1,
+                            "tasks": []
+                        }
+                    ]
+                }
+            ]
         }
     ],
     "users": [

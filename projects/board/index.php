@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href="/css/master.css">
     <link rel="stylesheet" href="/css/board.css">
+    <link rel="stylesheet" href="/css/home.css">
     <title>Scrum Bandicoot - <?php echo $_GET["project"] ?></title>
   </head>
   <body>
@@ -21,7 +22,6 @@
     
     ?>
 
-    <div class="container">
         
       <?php
 
@@ -30,6 +30,10 @@
         $slug = preg_replace('/[^A-Za-z0-9-]+/', '-', $slug);
 
         $sprint = filter_var($_GET['sprint'], FILTER_SANITIZE_STRING);
+        
+        echo '<div id="boardHeader">';
+        echo "<a class='button outline' href='/projects?project=" . $_GET["project"] . "' >Return to project</a>";
+        echo '</div>';
 
         echo '<div class="board-container">';
           displayColumns($slug, $sprint, $DB->getColumns($slug, $sprint));
@@ -128,6 +132,5 @@
       
       ?>
 
-    </div>
   </body>
 </html>

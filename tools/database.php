@@ -77,7 +77,9 @@
     }
 
     function createProject($slug) {
-      $newProject = ["slug" => $slug, "members" => [], "backlogProduct" => [], "sprints" => []];
+      $backlogColumn = ['title' => 'Backlog Sprint', 'locked' => TRUE, 'maxItem' => -1, 'tasks' => []];
+      $backlogSprint = ['beginning' => -1, 'ending' => -1, 'columns' => [$backlogColumn]];
+      $newProject = ['slug' => $slug, 'members' => [], 'sprints' => [$backlogSprint]];
       array_push($this->data['projects'], $newProject);
       $this->save();
     }
@@ -88,11 +90,6 @@
         array_push($project['members'], $userSlug);
         $this->save();
       }
-    }
-
-    function &getProjectBacklog($projectSlug) {
-      $project = &$this->getProject($projectSlug);
-      return $project['backlogProduct'];
     }
 
     function projectRemoveUser($projectSlug, $userSlug) {
@@ -113,8 +110,27 @@
     }
 
     function &getSprint($projectSlug, $sprintIndex) {
-      $project = &$this->getSprints($projectSlug)[$sprintIndex];
-      return $project;
+      $sprint = &$this->getSprints($projectSlug)[$sprintIndex];
+      return $sprint;
+    }
+
+    /*
+    function addSprint($projectSlug) {
+      $project = &$this->getProject($projectSlug);
+      $backlogColumn = ['title' => 'Backlog Sprint', 'locked' => TRUE, 'maxItem' => -1, 'tasks' => []];
+      $backlogSprint = ['beginning' => -1, 'ending' => -1, 'columns' => [$backlogColumn]];
+    }
+    */
+
+    function cancelSprint($projectSlug, $sprintIndex) {
+      foreach ($this->getColumns($projectSlug, $sprintIndex) as $columnIndex => $column) {
+        foreach ($this->getTasks($projectSlug, $sprintIndex, $columnIndex) as $task) {
+          $this->insertTask($projectSlug, 0, 0, $task);
+        }
+      }
+      $sprints = &$this->getSprints($projectSlug);
+      array_splice($sprints, $sprintIndex, 1);
+      $this->save();            
     }
 
     ### BOARD ###

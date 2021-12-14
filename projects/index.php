@@ -9,6 +9,8 @@
   <body>
 
     <?php require_once($_SERVER["DOCUMENT_ROOT"] . "/templates/navbar.php") ?>
+    <?php require_once($_SERVER["DOCUMENT_ROOT"] . "/tools/time.php") ?>
+    
     <?php if(isset($_GET["leave"])){
             $slug = filter_var($_GET["project"], FILTER_SANITIZE_STRING);
             $DB->projectRemoveUser($slug, $DB->getCurrentUser()['slug']);
@@ -17,20 +19,47 @@
     ?>
 
     <div class="container">
-      <h2><?php echo $_GET["project"] ?></h2>
-      <h3>Backlog Product</h3>
-      <?php
 
-        $slug = filter_var($_GET["project"], FILTER_SANITIZE_STRING);
-
-        foreach ($DB->getProjectBacklog($slug) as $task) {
-          echo $task['title'] . '<br>'; 
-        }
+      <div id="projectHeader">
+        <h1><?php echo $_GET["project"] ?></h1>
+        <?php echo "<a class='button outline' href='?leave&project=" . $_GET["project"] . "' >Leave project</a>" ?>
+      </div>
 
 
-        echo "<a class='delete button' href='?leave=true&project=" . $_GET["project"] . "' >Leave</a>";
+      <div id="projects">
 
-      ?>
+        <div id="projectsHeader">
+          <h2>My Sprints</h2>
+          <a class="button outline" href="/projects/sprints/?project=<?php echo $_GET["project"] ?>">Manage sprints</a>
+        </div>
+
+        <div id="projectsList">
+          <?php
+
+            
+
+            $slug = filter_var($_GET["project"], FILTER_SANITIZE_STRING);
+            
+            foreach ($DB->getSprints($slug) as $sprintIndex => $sprint) {
+              echo '<a class="project sprint" href="/projects/board?project=' . $slug . '&sprint=' . $sprintIndex . '">';
+                echo '<img src="/img/default-project.webp" alt="">';
+                if ($sprintIndex === 0) {
+                  echo '<h3>Backlog Product</h3>';
+                } else {
+                  echo '<h3>' . 'Sprint ' . $sprintIndex . '</h3>';
+                  if ($sprint['beginning'] > time()) {
+                    echo '<p>Starts in ' . secondsToHumanReadable($sprint['beginning'] - time()) . '</p>';
+                  } else {
+                    echo '<p>Ends in ' . secondsToHumanReadable($sprint['ending'] - time()) . '</p>';
+                  }
+                }
+              echo '</a>';
+            }
+            ?>
+        </div>
+      </div>
+      
+
     </div>
 
   </body>

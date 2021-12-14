@@ -43,7 +43,7 @@
     }
 
     function displayFormEdit($project, $sprint, $columnIndex, $taskIndex, $task, $members) {
-        echo '<div class="board-form">';
+        echo '<div class="popup-form">';
             echo '<a href="' . '?project=' . $project . "&sprint=" . $sprint . '"><div class="background"></div></a>';
             echo '<form action="/projects/board' . urlForEdit($project, $sprint, $columnIndex, $taskIndex) . '" method="post">';
                 echo '<h2>Edit a task</h2>';
@@ -64,7 +64,7 @@
     }
 
     function displayFormView($project, $sprint, $task) {
-        echo '<div class="board-form">';
+        echo '<div class="popup-form">';
             echo '<a href="' . '?project=' . $project . "&sprint=" . $sprint . '"><div class="background"></div></a>';
             echo '<form>';
             echo '<div class="board-card">';
@@ -81,7 +81,7 @@
     }
 
     function displayFormCreation($project, $sprint, $columnIndex) {
-        echo '<div class="board-form">';
+        echo '<div class="popup-form">';
             echo '<a href="' . '?project=' . $project . "&sprint=" . $sprint . '"><div class="background"></div></a>';
             echo '<form action="/projects/board' . urlForCreate($project, $sprint, $columnIndex) . '" method="post">';
                 echo '<h2>Create new task</h2>';

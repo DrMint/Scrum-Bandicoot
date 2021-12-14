@@ -1,4 +1,5 @@
-#projects > #projectsHeader {
+
+#projectHeader, #projects > #projectsHeader {
   display: grid;
   grid-template-columns: auto auto 1fr;
   place-items: center;
@@ -19,12 +20,17 @@
   grid-gap: 1.2rem;
 }
 
+#projects {
+  margin-bottom: 2em;
+}
+
 #projects > #projectsList > .project {
   border: solid 1px var(--color-main-dark);
   display: grid;
   place-content: center;
   place-items: center;
   border-radius: .5rem;
+  color: var(--color-main-dark);
 }
 
 #projects > #projectsList > a.project {
@@ -43,6 +49,19 @@
   margin-bottom: 1em;
 }
 
+#projects > #projectsList > .project.sprint > h3 {
+  margin-bottom: 0;
+}
+
+
+#projects > #projectsList > .project.sprint > p {
+  margin: 0;
+}
+
+#projects > #projectsList > .project.sprint > *:last-child,
+#projects > #projectsList > .project.sprint > p:last-of-type {
+  margin-bottom: 1em;
+}
 
 #projects > #projectsList > .project > img {
   width: 100%;
