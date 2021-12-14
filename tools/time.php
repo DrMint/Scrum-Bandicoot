@@ -10,4 +10,8 @@
     return $days . " days";
   }
 
+  function convertDateToSecond($date) {
+    return strtotime($date);
+  }
+
 ?>
