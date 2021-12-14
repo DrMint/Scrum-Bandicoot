@@ -120,6 +120,13 @@
       array_push($project['sprints'], $newSprint);
       $this->save();
     }
+    
+    function editSprint($projectSlug, $sprintIndex, $newBeginning, $newEnding) {
+      $sprint = &$this->getSprint($projectSlug, $sprintIndex);
+      $sprint['beginning'] = $newBeginning;
+      $sprint['ending'] = $newEnding;
+      $this->save();
+    }
 
     function cancelSprint($projectSlug, $sprintIndex) {
       foreach ($this->getColumns($projectSlug, $sprintIndex) as $columnIndex => $column) {

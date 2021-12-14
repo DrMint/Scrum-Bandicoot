@@ -14,7 +14,7 @@
     <?php 
       function displayFormEdit($projectslug, $beginning, $ending) {
         echo '<div class="popup-form">';
-          echo '<a href="/projects/sprints/?projects=' . $_GET["project"] . 'method="post" >';
+          echo '<a href="/projects/sprints/?project=' . $_GET["project"] . '" method="post" >';
           echo '<div class="background"></div></a>';
           echo '<form action="/projects/sprints/?action=edit&project=' . $_GET["project"] . '&sprint=' . $_GET["sprint"] . '" method="post" >';
             echo '<h2>Edit a sprint</h2>';
