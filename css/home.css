@@ -25,6 +25,7 @@
 }
 
 #projects > #projectsList > .project {
+  box-shadow: 0 0.2rem 0 var(--color-main-dark);
   border: solid 1px var(--color-main-dark);
   display: grid;
   place-content: center;
@@ -34,7 +35,7 @@
 }
 
 #projects > #projectsList > a.project {
-  box-shadow: 0 0.2rem 0 var(--color-main-dark);
+  
   transition: cubic-bezier(.17,.84,.44,1) .3s;
   transition-property: box-shadow, transform;
 }
