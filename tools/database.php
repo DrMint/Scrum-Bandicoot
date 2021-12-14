@@ -114,12 +114,13 @@
       return $sprint;
     }
 
-    function addSprint($projectSlug, $beginning, $ending) {
-      $project = &$this->getProject($projectSlug); 
-      $newSprint = ['beginning' => $beginning, 'ending' => $ending, 'columns' => $this->getDefaultSprintColumns()];
-      array_push($project['sprints'], $newSprint);
-      $this->save();
+    /*
+    function addSprint($projectSlug) {
+      $project = &$this->getProject($projectSlug);
+      $backlogColumn = ['title' => 'Backlog Sprint', 'locked' => TRUE, 'maxItem' => -1, 'tasks' => []];
+      $backlogSprint = ['beginning' => -1, 'ending' => -1, 'columns' => [$backlogColumn]];
     }
+    */
 
     function editSprint($projectSlug, $sprintIndex, $newBeginning, $newEnding) {
       $sprint = &$this->getSprint($projectSlug, $sprintIndex);
@@ -137,15 +138,6 @@
       $sprints = &$this->getSprints($projectSlug);
       array_splice($sprints, $sprintIndex, 1);
       $this->save();
-    }
-
-    function getDefaultSprintColumns() {
-      $backlog = ['title' => 'Backlog Sprint', 'maxItem' => -1, 'locked' => TRUE, 'tasks' => []];
-      $todo = ["title" => "To do", "maxItem" => -1, "locked" => FALSE, "tasks" => []];
-      $doing = ["title" => "Doing", "maxItem" => -1, "locked" => FALSE, "tasks" => []];
-      $review = ["title" => "Review", "maxItem" => 4, "locked" => FALSE, "tasks" => []];
-      $done = ["title" => "Done", "maxItem" => -1, "locked" => TRUE, "tasks" => []];
-      return [$backlog, $todo, $doing, $review, $done];
     }
 
     ### BOARD ###
@@ -260,18 +252,6 @@
     function deleteTask($projectSlug, $sprintIndex, $columnIndex, $taskIndex) {
       $tasks = &$this->getTasks($projectSlug, $sprintIndex, $columnIndex);
       array_splice($tasks, $taskIndex, 1);
-      $this->save();
-    }
-
-    function deleteTasks($projectSlug, $sprintIndex, $columnIndex, $taskIndices) {
-      $tasks = &$this->getTasks($projectSlug, $sprintIndex, $columnIndex);
-      $newTasks = [];
-      foreach ($tasks as $taskIndex=> $task) {
-        if (!in_array($taskIndex, $taskIndices)) {
-          array_push($newTasks, $task);
-        }
-      }
-      $tasks = $newTasks;
       $this->save();
     }
 

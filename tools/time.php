@@ -15,4 +15,8 @@
     return strtotime($date);
   }
 
+  function convertSecondToDate($seconds) {
+    return date('Y-m-d', $seconds);
+  }
+
 ?>
