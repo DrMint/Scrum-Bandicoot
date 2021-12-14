@@ -11,6 +11,7 @@
   }
 
   function convertDateToSecond($date) {
+    str_replace('-', '.', $date);
     return strtotime($date);
   }
 
