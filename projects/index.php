@@ -57,6 +57,36 @@
             }
             ?>
         </div>
+
+        <div id="projectsHeader">
+          <h2>My Tasks</h2>
+        </div>
+
+        <div id="taskList">
+          <?php
+
+            $slug = filter_var($_GET["project"], FILTER_SANITIZE_STRING);
+            $sprints = $DB->getSprints($slug);
+            
+            foreach($sprints as $sprintIndex => $sprint) {
+              foreach($DB->getColumns($slug, $sprintIndex) as $columnIndex => $column)
+              foreach($DB->getTasks($slug, $sprintIndex, $columnIndex) as $task) {
+                if (in_array($DB->getCurrentUser()['slug'], $task['assignees'])) {
+                  echo '<a class="task" href="/projects/board?project=' . $slug . '&sprint=' . $sprintIndex . '">';
+                  echo '<h3>' . $task['title'] . '</h3>';
+                  if ($sprintIndex > 0) {
+                    echo  '<p>in Sprint ' . $sprintIndex . '</p>';
+                  } else {
+                    echo  '<p>in Backlog Product</p>';
+                  }
+                  echo '</a>';
+                }
+              }
+            }
+
+          ?>
+        </div>
+
       </div>
       
 

@@ -24,6 +24,10 @@
   margin-bottom: 2em;
 }
 
+#projects > #projectsList ~ #projectsHeader {
+  margin-top: 3em;
+}
+
 #projects > #projectsList > .project {
   box-shadow: 0 0.2rem 0 var(--color-main-dark);
   border: solid 1px var(--color-main-dark);
@@ -40,7 +44,8 @@
   transition-property: box-shadow, transform;
 }
 
-#projects > #projectsList > a.project:hover {
+#projects > #projectsList > a.project:hover,
+#taskList > .task:hover {
   box-shadow: 0 0.7rem 0 var(--color-main-dark);
   transform: translateY(-0.5rem);
   transition: cubic-bezier(.43,-0.01,.5,1.97) .1s;
@@ -74,4 +79,31 @@
 #projects > #projectsList > .project > h3 {
   margin-top: 1em;
   margin-bottom: 1em;
+}
+
+#taskList {
+  display: grid;
+  grid-auto-flow: column;
+  place-items: center;
+  place-content: start;
+  grid-gap: 1rem;
+}
+
+#taskList > .task {
+  box-shadow: 0 0.2rem 0 var(--color-main-dark);
+  border: solid 1px var(--color-main-dark);
+  display: grid;
+  place-content: center;
+  place-items: center;
+  border-radius: .5rem;
+  color: var(--color-main-dark);
+  padding: .5em 2em;
+}
+
+#taskList > .task > h3 {
+  margin-bottom: 0;
+}
+
+#taskList > .task > p {
+  margin-top: 0.5em;
 }

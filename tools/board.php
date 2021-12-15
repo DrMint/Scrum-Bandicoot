@@ -3,7 +3,8 @@
     function displayColumns($project, $sprint, $columns) {
         foreach ($columns as $columnIndex => $column) {
             echo '<div class="board-column">';
-            echo '<div class="board-card">';
+            echo '<div class="board-card board-column-title">';
+                displayActions($project, $sprint, $columnIndex, $columns);
                 echo '<h2>' . $column['title'] . '</h2>';
             echo '</div>';
             foreach ($column['tasks'] as $taskIndex => $task) {
@@ -26,19 +27,32 @@
 
     function displayActions($project, $sprint, $columnIndex, $columns, $taskIndex=NULL) {
         echo '<div class="board-actions">';
-            if ($columnIndex > 0) {
+            
+            if ((is_null($taskIndex) and $columnIndex > 1 and !$columns[$columnIndex]['locked']) or (!is_null($taskIndex) and $columnIndex > 0)) {
                 echo '<a href="' . urlForLeft($project, $sprint, $columnIndex, $taskIndex) . '">◀</a>';
             } else {
                 echo '<p></p>';
             }
-            echo '<a href="' . urlForView($project, $sprint, $columnIndex, $taskIndex) . '">View</a>';
-            echo '<a href="' . urlForEdit($project, $sprint, $columnIndex, $taskIndex) . '">Edit</a>';
-            echo '<a href="' . urlForDelete($project, $sprint, $columnIndex, $taskIndex) . '">Delete</a>';
-            if ($columnIndex < count($columns) - 1) {
+            
+            if (!is_null($taskIndex)) echo '<a href="' . urlForView($project, $sprint, $columnIndex, $taskIndex) . '">View</a>';
+            if (!is_null($taskIndex) or (is_null($taskIndex) and !$columns[$columnIndex]['locked'])) echo '<a href="' . urlForEdit($project, $sprint, $columnIndex, $taskIndex) . '">Edit</a>';
+            if (!is_null($taskIndex) or (is_null($taskIndex) and !$columns[$columnIndex]['locked'])) echo '<a href="' . urlForDelete($project, $sprint, $columnIndex, $taskIndex) . '">Delete</a>';
+            if ((is_null($taskIndex) and $columnIndex < count($columns) - 2 and !$columns[$columnIndex]['locked']) or (!is_null($taskIndex) and $columnIndex < count($columns) - 1)) {
                 echo '<a href="' . urlForRight($project, $sprint, $columnIndex, $taskIndex) . '">▶</a>';
             } else {
                 echo '<p></p>';
             }
+        echo '</div>';
+    }
+
+    function displayFormEditColumn($project, $sprint, $columnIndex, $column) {
+        echo '<div class="popup-form">';
+            echo '<a href="' . '?project=' . $project . "&sprint=" . $sprint . '"><div class="background"></div></a>';
+            echo '<form action="/projects/board' . urlForEdit($project, $sprint, $columnIndex) . '" method="post">';
+                echo '<h2>Edit a column</h2>';
+                echo '<input class="title" type="text" name="title" placeholder="Column\'s title" value="' . $column['title'] . '">';
+                echo '<button type="submit" class="button outline" name="submitButton" value="Submit">Confirm</button>';
+            echo '</form>';
         echo '</div>';
     }
 
@@ -80,6 +94,17 @@
         echo '</div>';
     }
 
+    function displayFormCreationColumn($project, $sprint) {
+        echo '<div class="popup-form">';
+            echo '<a href="' . '?project=' . $project . "&sprint=" . $sprint . '"><div class="background"></div></a>';
+            echo '<form action="/projects/board' . urlForCreate($project, $sprint) . '" method="post">';
+                echo '<h2>Create new column</h2>';
+                echo '<input class="title" type="text" name="title" placeholder="Title of the new column">';
+                echo '<button type="submit" class="button outline"  name="submitButton" value="Submit">Create column</button>';
+            echo '</form>';
+        echo '</div>';
+    }
+
     function displayFormCreation($project, $sprint, $columnIndex) {
         echo '<div class="popup-form">';
             echo '<a href="' . '?project=' . $project . "&sprint=" . $sprint . '"><div class="background"></div></a>';
@@ -92,8 +117,10 @@
     }
 
 
-    function urlForCreate($project, $sprint, $columnIndex) {
-        return '?project=' . $project . '&sprint=' . $sprint . '&action=create&column=' . $columnIndex;
+    function urlForCreate($project, $sprint, $columnIndex=NULL) {
+        $result = '?project=' . $project . '&sprint=' . $sprint . '&action=create';
+        if (!is_null($columnIndex)) $result .= '&column=' . $columnIndex;
+        return $result;
     }
 
     function urlForLeft($project, $sprint, $columnIndex, $taskIndex=NULL) {

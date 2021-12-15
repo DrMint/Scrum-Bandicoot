@@ -161,33 +161,48 @@
     }
 
     function createColumn($projectSlug, $sprintIndex, $title) {
-      $column = &$this->getColumns($projectSlug, $sprintIndex);
+      $columns = &$this->getColumns($projectSlug, $sprintIndex);
       $newColumn = ["title" => $title, "locked" => false, "maxItem" => -1, "tasks" => []];
-      array_push($column, $newColumn);
+      array_push($columns, $newColumn);
+      $this->moveColumn($projectSlug, $sprintIndex, count($columns) - 1, count($columns) - 2);
+      $this->save();
     }
 
     function setColumnTitle($projectSlug, $sprintIndex, $columnIndex, $newTitle) {
       $column = &$this->getColumn($projectSlug, $sprintIndex, $columnIndex);
       $column["title"] = $newTitle;
+      $this->save();
     }
 
     function setColumnLock($projectSlug, $sprintIndex, $columnIndex, $taskIndex, bool $lock) {
       $column = &$this->getColumn($projectSlug, $sprintIndex, $columnIndex);
       $column["locked"] = $lock;
+      $this->save();
     }
 
     function setMaxItem($projectSlug, $sprintIndex, $columnIndex, int $maxItem) {
       $column = &$this->getColumn($projectSlug, $sprintIndex, $columnIndex);
       $column["maxItem"] = $maxItem;
+      $this->save();
     }
 
-    function deleteColumn($projectSlug, $sprintIndex, $columnIndex, $taskIndex) {
-      $column = &$this->getTask($projectSlug, $sprintIndex, $columnIndex);
-      if (!$column["locked"]){
-        array_splice($column, $columnIndex, 1);
-        $column = NULL;
+    function moveColumn($projectSlug, $sprintIndex, $columnIndex, $newColumnIndex) {
+      $column = &$this->getColumn($projectSlug, $sprintIndex, $columnIndex);
+      $columnCopy = $this->getColumn($projectSlug, $sprintIndex, $columnIndex);
+      $destinationColumn = &$this->getColumn($projectSlug, $sprintIndex, $newColumnIndex);
+      $column = $destinationColumn;
+      $destinationColumn = $columnCopy;
+      
+      $this->save();
+    }
+
+    function deleteColumn($projectSlug, $sprintIndex, $columnIndex) {
+      $column = &$this->getColumns($projectSlug, $sprintIndex);
+      foreach ($this->getTasks($projectSlug, $sprintIndex, $columnIndex) as $task) {
+        $this->insertTask($projectSlug, $sprintIndex, 0, $task);
       }
-      else{echo "Can't delete this column";}
+      array_splice($column, $columnIndex, 1);
+      $this->save();
     }
 
     ### TASKS ###

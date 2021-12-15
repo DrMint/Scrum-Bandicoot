@@ -81,5 +81,10 @@
 #boardHeader {
     display: grid;
     place-content: center;
+    grid-auto-flow: column;
     padding: 1em;
   }
+
+.board-column-title {
+    box-shadow: 0 0.2rem 0 var(--color-main-dark);
+}
