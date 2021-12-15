@@ -85,6 +85,7 @@
                 $title = filter_var($_POST['title'], FILTER_SANITIZE_STRING);
                 $description = filter_var($_POST['description'], FILTER_SANITIZE_STRING);
                 $assignees = $_POST['assignees'];
+                if (is_null($assignees)) $assignees = [];
                 $DB->setTaskTitle($slug, $sprint, $column, $task, $title);
                 $DB->setTaskDescription($slug, $sprint, $column, $task, $description);
                 $DB->setTaskAssignees($slug, $sprint, $column, $task, $assignees);
