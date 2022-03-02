@@ -36,10 +36,10 @@ If you want to use the demo database, the default account is named `demo`, the p
 ### Login Page
 On the Login Page, the user is asked to enter their **username** and **password** and click **Sign In**.
 If the credentials are correct, the user is redirected the their [[Documentation#Profile Page|Profile Page]].
-![](/doc/Screen Shot 2021-12-22 at 17.03.18.png)
+![](/doc/login.png)
 
 If the entered **username** or **password** is wrong, the following alert appears:
-![](/doc/Screen Shot 2021-12-22 at 17.31.52.png)
+![](/doc/login-wrong-credentials.png)
 
 ```ad-attention
 title: Limitation
@@ -55,10 +55,10 @@ Lastly, from this page, the user is also able to click the **Create an account**
 
 One the Register Page, the user is asked to provide a **username** and **password** and click **Create account**. 
 If the credentials are correct, the user is redirected the their [[Documentation#Profile Page|Profile Page]].
-![](/doc/Screen Shot 2021-12-22 at 17.03.38.png)
+![](/doc/create-account.png)
 
 If the entered **username** is already register, they are asked to try another name:
-![](/doc/Screen Shot 2021-12-22 at 17.04.16.png)
+![](/doc/create-account-already-exists.png)
 
 ### Profile Page
 
@@ -71,12 +71,12 @@ On their Profile Page, users are greeted with the following elements:
 
 - And lastly, there is a list of **Public projects**, which are projects the user haven't joined yet. The projects are also displayed as cards, however, a **join** button is present at the bottom of the card to allow the user to join the project. If a user join a project, the user will stay on the page and the joined project will now be moved from the **Public projects** section to the **My Projects** section.
 
-![](/doc/Screen Shot 2021-12-22 at 17.04.31.png)
+![](/doc/home.png)
 
 #### Project Creation Form
 Projects can be easilly created using this form. The user simply needs to input the project's name.
 
-![](/doc/Screen Shot 2021-12-22 at 17.04.43.png)
+![](/doc/create-project.png)
 
 ```ad-attention
 title: Limitation
@@ -98,7 +98,7 @@ On a project page, the user can see the following elements:
 	- Next to the **My Sprints** title, there is a **Manage sprints** button that leads to the [[Documentation#Sprints Management|Sprints Management]] page.
 - Lastly, there is the **My Tasks** section where the user can quickly see all the tasks he has been assigneed to. The user can click on the task to be redirected to the specific Sprint the task is located (or the Backlog Product if the task isn't yet part of a sprint).
 
-![](/doc/Screen Shot 2021-12-22 at 17.04.58.png)
+![](/doc/project-view.png)
 
 ```ad-attention
 title: Limitation
@@ -110,7 +110,7 @@ Currently, all tasks assigned to the user are displayed under My Tasks, includin
 
 The Backlog Product is a very simplified Kanban board with just one column. The user can add, edit, remove tasks easilly from this interface. Please check the [[Documentation#Kanban Board|Kanban Board]] chapter to learn about how to interact with a Kanban board. 
 
-![](/doc/Screen Shot 2021-12-22 at 17.27.24.png)
+![](/doc/project-backlog.png)
 
 ### Sprints Management
 
@@ -123,13 +123,13 @@ Those sprint cards display more information than on the [[Documentation#Project 
 - The date when the sprint starts and ends (including a human readable version).
 - The cards also includes two buttons: the **Edit** and **Cancel** buttons.
 
-![](/doc/Screen Shot 2021-12-22 at 17.26.17.png)
+![](/doc/project-sprints.png)
 
 #### Sprint Edit Form
 
 If the user clicks on one of the **Edit** buttons on the sprint cards, a form appears. On this form, the user can modify when the sprint starts and ends. Those dates must be today or further in the future.
 
-![](/doc/Screen Shot 2021-12-22 at 17.26.34.png)
+![](/doc/project-sprint-edit.png)
 
 ```ad-attention
 title: Limitation
@@ -150,7 +150,7 @@ You can select multiple tasks using the Ctrl key on the keyboard. Simply press t
 
 If the user confirms the creation of the Sprint, the selected Backlog Product's tasks are transfered to the new sprint. They are no longer in the Backlog Product.
 
-![](/doc/Screen Shot 2021-12-22 at 17.26.41.png)
+![](/doc/project-sprint-create.png)
 
 #### Sprint Cancelling
 
@@ -166,15 +166,15 @@ The Kanban Board is an integral part of Scrum Bandicoot. On the Kanban Board pag
 	- Tasks are listed vertically in their corresponding column. The task's title is displayed at the top of its card, and the assignees are listed in pill-shaped containers.
 	- Within a column, bellow all its tasks, is located the **Create task** button that opens the [[Documentation#Task Creation Form|Task Creation Form]] 
 
-![](/doc/Screen Shot 2021-12-22 at 17.05.25.png)
+![](/doc/kanban.png)
 
 
 #### Option Menu
 By hovering over a column's title, the option menu appears at the top of its title card.
-![](/doc/Screen Shot 2021-12-22 at 17.06.05.png)
+![](/doc/kanban-2.png)
 
 By hovering over a task's card, the option menu appears at its top.
-![](/doc/Screen Shot 2021-12-22 at 17.06.17.png)
+![](/doc/kanban-3.png)
 
 The option menu offers four functionalities for tasks:
 - To **View**
@@ -202,22 +202,22 @@ It was initially planned to be able to drag and drop tasks to another column ins
 
 #### Column Creation Form
 
-![](/doc/Screen Shot 2021-12-22 at 17.12.06.png)
+![](/doc/kanban-new-column.png)
 
 #### Column Edition Form
 
-![](/doc/Screen Shot 2021-12-22 at 17.12.22.png)
+![](/doc/kanban-edit-column.png)
 
 #### Task Creation Form
 
-![](/doc/Screen Shot 2021-12-22 at 17.11.53.png)
+![](/doc/kanban-new-task.png)
 
 #### Task Edition Form
 
 As with the multi selection menu for the [[Documentation#Sprint Creation|Sprint Creation]] form, you can select multiple members by pressing Ctrl while clicking on a member. You can also deselect a member by pressing the Ctrl key and clicking on an already selected member.
 
-![](/doc/Screen Shot 2021-12-22 at 21.44.13.png)
+![](/doc/kanban-edit-task.png)
 
 #### Task View Popup
 
-![](/doc/Screen Shot 2021-12-22 at 17.07.32.png)
+![](/doc/kanban-view-item.png)
