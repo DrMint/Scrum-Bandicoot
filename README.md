@@ -35,7 +35,7 @@ If you want to use the demo database, the default account is named `demo`, the p
 ## User Documentation
 ### Login Page
 On the Login Page, the user is asked to enter their **username** and **password** and click **Sign In**.
-If the credentials are correct, the user is redirected the their [[Documentation#Profile Page|Profile Page]].
+If the credentials are correct, the user is redirected the their Profile Page.
 ![](/doc/login.png)
 
 If the entered **username** or **password** is wrong, the following alert appears:
@@ -49,12 +49,12 @@ There is currently no way for the users to reset their passwords by themselves a
 ```
 
 
-Lastly, from this page, the user is also able to click the **Create an account** to be redirected to the [[Documentation#Register Page|Register Page]].
+Lastly, from this page, the user is also able to click the **Create an account** to be redirected to the Register Page.
 
 ### Register Page
 
 One the Register Page, the user is asked to provide a **username** and **password** and click **Create account**. 
-If the credentials are correct, the user is redirected the their [[Documentation#Profile Page|Profile Page]].
+If the credentials are correct, the user is redirected the their Profile Page.
 ![](/doc/create-account.png)
 
 If the entered **username** is already register, they are asked to try another name:
@@ -64,10 +64,10 @@ If the entered **username** is already register, they are asked to try another n
 
 On their Profile Page, users are greeted with the following elements:
 - At the top, the navbar displays the app title **Scrum Bandicoot**, a welcome message, and a logout button.
-	- The **Scrum Bandicoot** title can be clicked to bring the user back to their [[Documentation#Profile Page|Profile Page]].
-	- The **Logout** button logout the user and redirect them to the [[Documentation#Login Page|Login Page]].
+	- The **Scrum Bandicoot** title can be clicked to bring the user back to their Profile Page.
+	- The **Logout** button logout the user and redirect them to the Login Page.
 
-- Bellow the navbar, the project for which the user is a member are listed under the title **My Projects**. The projects are displayed as cards with the project thumbnail displayed at the top, and the title of the project at the bottom. Next to **My Projects**, the user can click on **Create a project** to open the [[Documentation#Project Creation Form|Project Creation Form]]. 
+- Bellow the navbar, the project for which the user is a member are listed under the title **My Projects**. The projects are displayed as cards with the project thumbnail displayed at the top, and the title of the project at the bottom. Next to **My Projects**, the user can click on **Create a project** to open the Project Creation Form. 
 
 - And lastly, there is a list of **Public projects**, which are projects the user haven't joined yet. The projects are also displayed as cards, however, a **join** button is present at the bottom of the card to allow the user to join the project. If a user join a project, the user will stay on the page and the joined project will now be moved from the **Public projects** section to the **My Projects** section.
 
@@ -90,12 +90,12 @@ The projects' name and usernames are converted into slug when processed by the s
 On a project page, the user can see the following elements:
 - The title of the project is displayed at the top
 - There is the **Leave project** button next to the project's title that allows the user to leave a project.
-- The **My Sprints** section lists the past, current, and future sprints. It also includes the [[Documentation#Backlog Product|Backlog Product]].
+- The **My Sprints** section lists the past, current, and future sprints. It also includes the Backlog Product.
 	- The Backlog Product is a list of Tasks that hasn't been included in a Sprint yet. In the Scrum project management approach, the list of tasks that constitute the Backlogs Products is supposed to be compiled and ordered by priority before starting the project.
 	- Past sprints will display when the sprint ended in a human-readable format (i.e., "Ended 20 days ago", "Ended 2 hours ago"...)
 	- Current sprints will display when the sprint will end (i.e., "Ends in 3 days").
 	- Future sprints will display when the sprint will start (i.e., "Starts in 4 days").
-	- Next to the **My Sprints** title, there is a **Manage sprints** button that leads to the [[Documentation#Sprints Management|Sprints Management]] page.
+	- Next to the **My Sprints** title, there is a **Manage sprints** button that leads to the Sprints Management page.
 - Lastly, there is the **My Tasks** section where the user can quickly see all the tasks he has been assigneed to. The user can click on the task to be redirected to the specific Sprint the task is located (or the Backlog Product if the task isn't yet part of a sprint).
 
 ![](/doc/project-view.png)
@@ -108,7 +108,7 @@ Currently, all tasks assigned to the user are displayed under My Tasks, includin
 
 ### Backlog Product
 
-The Backlog Product is a very simplified Kanban board with just one column. The user can add, edit, remove tasks easilly from this interface. Please check the [[Documentation#Kanban Board|Kanban Board]] chapter to learn about how to interact with a Kanban board. 
+The Backlog Product is a very simplified Kanban board with just one column. The user can add, edit, remove tasks easilly from this interface. Please check the Kanban Board chapter to learn about how to interact with a Kanban board. 
 
 ![](/doc/project-backlog.png)
 
@@ -116,10 +116,10 @@ The Backlog Product is a very simplified Kanban board with just one column. The 
 
 On the Sprints Management page, the user can see the following elements:
 - The title of the project displayed at the top
-- The **Return to project** button that redirect the user to the appropriate [[Documentation#Project Page|Project Page]].
+- The **Return to project** button that redirect the user to the appropriate Project Page.
 - The list of past, current, and future sprints displayed as cards.
 
-Those sprint cards display more information than on the [[Documentation#Project Page|Project Page]]:
+Those sprint cards display more information than on the Project Page:
 - The date when the sprint starts and ends (including a human readable version).
 - The cards also includes two buttons: the **Edit** and **Cancel** buttons.
 
@@ -141,7 +141,7 @@ If the user clicks on the **Add Sprint** button, the following form appears.
 The user is prompted for the following information:
 - The sprint starting date
 - The sprint ending date
-- A subset of the [[Documentation#Backlog Product|Backlog Product]]'s tasks.
+- A subset of the Backlog Product's tasks.
 
 ```ad-info
 title: Info
@@ -154,17 +154,17 @@ If the user confirms the creation of the Sprint, the selected Backlog Product's 
 
 #### Sprint Cancelling
 
-If the user clicks on the **Cancel** button on one of the sprint cards, the sprint is cancelled. This means that all tasks in that sprint are transfered back to the  [[Documentation#Backlog Product|Backlog Product]].
+If the user clicks on the **Cancel** button on one of the sprint cards, the sprint is cancelled. This means that all tasks in that sprint are transfered back to the  Backlog Product.
 
 ### Sprint Kanban Board
 
 The Kanban Board is an integral part of Scrum Bandicoot. On the Kanban Board page, the user is greeted with the following elements:
-- The **Return to project** button that redirect the user to the appropriate [[Documentation#Project Page|Project Page]].
-- The **Create column** button that leads to the [[Documentation#Column Creation Form|Column Creation Form]]
+- The **Return to project** button that redirect the user to the appropriate Project Page.
+- The **Create column** button that leads to the Column Creation Form
 - The Kanban Board
 	- Columns are listed horizontally and seperated by a thin vertical line. Their title is displayed at the top in bold.
 	- Tasks are listed vertically in their corresponding column. The task's title is displayed at the top of its card, and the assignees are listed in pill-shaped containers.
-	- Within a column, bellow all its tasks, is located the **Create task** button that opens the [[Documentation#Task Creation Form|Task Creation Form]] 
+	- Within a column, bellow all its tasks, is located the **Create task** button that opens the Task Creation Form 
 
 ![](/doc/kanban.png)
 
@@ -214,7 +214,7 @@ It was initially planned to be able to drag and drop tasks to another column ins
 
 #### Task Edition Form
 
-As with the multi selection menu for the [[Documentation#Sprint Creation|Sprint Creation]] form, you can select multiple members by pressing Ctrl while clicking on a member. You can also deselect a member by pressing the Ctrl key and clicking on an already selected member.
+As with the multi selection menu for the Sprint Creation form, you can select multiple members by pressing Ctrl while clicking on a member. You can also deselect a member by pressing the Ctrl key and clicking on an already selected member.
 
 ![](/doc/kanban-edit-task.png)
 
